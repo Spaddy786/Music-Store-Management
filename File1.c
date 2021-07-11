@@ -167,7 +167,7 @@ void ex_it(void)
      if(strlen(p.Song_Name)>20||strlen(p.Song_Name)<2)
      {
 
-         printf("\n\t Invalid; max character limit is 20");
+         printf("\n\t Invalid; The max character limit is 20 & minimum is 2");
          goto A;
      }
      else{
@@ -183,5 +183,37 @@ void ex_it(void)
                 break;
             }
         }
+        if(!valid)
+        {
+            printf("\n\t\t Invalid Character in Song Name, Try again!");
+            goto A;
+        }
      }
  }
+/* Composed By */
+B:
+    printf("\n\t\t\t Last Name:");
+    scanf("%s",p.Composed_By);
+    p.Composed_By[0]=toupper(p.Composed_By[0]);
+    if(strlen(p.Composed_By)>20||strlen(p.Composed_By)<2)
+    {
+        printf("\n\t Invalid, Maximum Character Range is 20 and minimum is 2");
+        goto B;
+    }
+    else{
+        for(b=0;b<strlen(p.Composed_By);b++)
+        {
+            if(isalpha(p.Composed_By[b]))
+            {
+                valid=1;
+            }
+            else{
+                valid=0;
+                break;
+            }
+        }
+        if(!valid)
+        {
+
+        }
+    }
