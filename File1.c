@@ -45,26 +45,26 @@ main(void)
 }
 void WelcomeScreen(void)
 {
-printf("\n\n\n\n\n\n\n\n\t\t\t##################################");
-printf("\n\t\t\t#\t\t Welcome To#");
-printf("\n\t\t\t\t# Music Store Management System    #");
-printf("\n\t\t\t\t##################################");
+printf("\n\n\n\n\n\n\n\n\t\t\t\t\t#################################################");
+printf("\n\t\t\t\t\t#\t\t Welcome To\t\t\t#");
+printf("\n\t\t\t\t\t#\t Music Store Management System          #");
+printf("\n\t\t\t\t\t#################################################");
 printf("\n\n\n\n\n Press any key to continue......\n");
 getch();
-system("clscr");
+system("cls");
 }
 void Title(void)
 {
 
-    printf("\n\n\t\t--------------------------------------------");
-    printf("\n\t\t\t\t       Hexagon Music Inc.        ");
-    printf("\n\t\t--------------------------------------------");
+    printf("\n\n\t\t--------------------------------------------------------------------------------------------");
+    printf("\n\t\t\t\t\t\t       Hexagon Music Inc.        ");
+    printf("\n\t\t--------------------------------------------------------------------------------------------");
 }
 /* ******** main menu******** */
 void MainMenu(void)
 {
 
-    system("clscr");
+    system("cls");
     int choose;
     Title();
     printf("\n\n\n\n\n\t\t\t\t 1. Add Music Record\n");
@@ -102,14 +102,7 @@ void MainMenu(void)
     }
 
 }
-/* *******Exit Screen********** */
-void ex_it(void)
-{
-    system("clscr");
-    Title();
-    printf("\n\n\n\n\n\t\t\t Thank You For visiting");
-    getch();
-}
+
 /* LOGIN SCREEN */
  void LoginScreen(void)
  {
@@ -153,7 +146,7 @@ void ex_it(void)
  /* ***** Adding Record ****/
  void Add_rec(void)
  {
-     system("clscr");
+     system("cls");
      Title();
 
      char ans;
@@ -184,16 +177,16 @@ void ex_it(void)
                 break;
             }
         }
-        if(!valid)
-        {
-            printf("\n\t\t Invalid Character in Song Name, Try again!");
-            goto A;
+    if(!valid)
+    {
+                printf("\n\t\t Invalid Character in Song Name, Try again!");
+                goto A;
         }
      }
 
 /* Composed By */
 B:
-    printf("\n\t\t\t Last Name:");
+    printf("\n\t\t\t Composed by :");
     scanf("%s",&p.Composed_By);
     p.Composed_By[0]=toupper(p.Composed_By[0]);
     if(strlen(p.Composed_By)>20||strlen(p.Composed_By)<2)
@@ -227,15 +220,15 @@ B:
 
         printf("\n\t\t\t Item In stock[Y/N]:");
         scanf("%c",&p.In_Stock);
-        if(toupper(p.In_Stock)=='Y'|| toupper(p.In_Stock)=='N')
+        getch();
+        if(p.In_Stock=='Y'|| 'N'||'y'||'n')
         {
-
             ok=1;
         }
         else{
             ok=0;
         }
-        if(!ok)
+        if(ok==0)
         {
             printf("\n\t\t Contains invalid character, Enter either Y(yes) or N(no)");
 
@@ -328,7 +321,7 @@ void func_list()
 {
 
     int row;
-    system("clscr");
+    system("cls");
     Title();
     FILE *ek;
     ek=fopen("Record2.dat","r");
@@ -346,7 +339,7 @@ void func_list()
     gotoxy(64,15);
     printf("Quantity");
     gotoxy(88,15);
-    printf("Price in INR");
+    printf("Price in INR\n");
     printf("=================================================================================================================");
     row=17;
     while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
@@ -377,7 +370,7 @@ void Search_rec(void)
 {
 
     char name[20];
-    system("clscr");
+    system("cls");
     Title();
     FILE *ek;
     ek=fopen("Record2.dat","r");
@@ -461,7 +454,7 @@ void Edit_rec(void)
     int i,b, valid=0;
     char ch;
     char name[20];
-    system("clscr");
+    system("cls");
     Title();
     ft=fopen("temp.dat","w+");
     ek=fopen("Record.dat","r");
@@ -500,7 +493,7 @@ void Edit_rec(void)
             gotoxy(12,26);
             printf("Composed By:");
             scanf("%s",&p.Composed_By);
-            p.Composed_By=toupper(p.Composed_By);
+            p.Composed_By[0]=toupper(p.Composed_By[0]);
             gotoxy(12,28);
             printf("Album:");
             scanf("%s",&p.Album);
@@ -537,22 +530,66 @@ void Edit_rec(void)
         fclose(ft);
         fclose(ek);
         remove("Record2.dat");
-        remove("temp2.dat","Record2.dat");
+        rename("temp2.dat","Record2.dat");
         getch();
         MainMenu();
 
     }
-    /* *********** DELETING RECORD ********** */
-    void Dlt_rec
 
-
-
-
-
-
-
-
-
-        }
+}
+ /* *********** DELETING RECORD ********** */
+void Dlt_rec()
+{
+char name[20];
+int found=0;
+system("cls");
+Title();
+FILE *ek, *ft;
+ft=fopen("temp_file2.dat","w+");
+ek=fopen("Record2.dat","r");
+printf("\n\n\t\t\t!!!!!!!!!!!!!! Delete a Music record!!!!!!!!!!!!!!\n");
+gotoxy(12,8);
+printf("\n Enter Song name to delete:");
+fflush(stdin);
+gets(name);
+name[0]=toupper(name[0]);
+fflush(stdin);
+gets(name);
+name[0]=toupper(name[0]);
+while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
+{
+    if(strcmp(p.Song_Name,name)!=0)
+    {
+        fprintf(ft,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
     }
+    else
+    {
+        printf("%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
+        found=1;
+    }
+}
+if(found==0)
+{
+    printf("\n\n\t\t\t Record Not Found.....");
+    getch();
+    MainMenu();
+}
+else
+{
+    fclose(ek);
+    fclose(ft);
+    remove("Record2.dat");
+    rename("temp_file2.dat","Record2.dat");
+    printf("\n\n\t\t\t Record Deleted Successfully");
+    getch();
+    MainMenu();
+}
+}
+/* *******Exit Screen********** */
+void ex_it(void)
+{
+    system("cls");
+    Title();
+    printf("\n\n\n\n\n\t\t\t Thank You For visiting");
+    getch();
 }
