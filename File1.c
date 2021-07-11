@@ -102,4 +102,12 @@ void MainMenu(void)
     }
 
 }
-
+/* *******Exit Screen********** */
+void ex_it(void)
+{
+    system("clscr");
+    Title();
+    printf("\n\n\n\n\n\t\t\t Thank You For visiting");
+    getch();
+}
+/* LOGIN SCREEN */
