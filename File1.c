@@ -45,11 +45,28 @@ main(void)
 }
 void WelcomeScreen(void)
 {
-printf("\n\n\n\n\n\n\n\n\t\t\t######################");
+printf("\n\n\n\n\n\n\n\n\t\t\t##################################");
 printf("\n\t\t\t#\t\t Welcome To#");
 printf("\n\t\t\t\t# Music Store Management System    #");
-printf("\n\t\t\t\t####################");
+printf("\n\t\t\t\t##################################");
 printf("\n\n\n\n\n Press any key to continue......\n");
 getch();
-system("cls");
+system("clscr");
+}
+void Title("void")
+{
+
+    printf("\n\n\t\t--------------------------------------------");
+    printf("\n\t\t\t\t       Hexagon Music Inc.        ");
+    printf("\n\t\t--------------------------------------------")
+}
+/* ******** main menu******** */
+void MainMenu(void)
+{
+
+    system("clscr");
+    int choose;
+    Title();
+    printf("\n\n\n\n\n\n\n\t\t\t\t 1. Add Music Record\n");
+    printf("\n\t\t\t")
 }
