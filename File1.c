@@ -299,4 +299,18 @@ B:
         }
      }
  }
+ fprintf(ek," %s %s %s %s %c %i %i", p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
+ printf("\n\n\t\t\t...... Information Record Successful......");
+ fclose(ek);
+ sd:
+ getch();
+ printf("\n\n\t\t\t Do you want to add more[Y/N]?");
+ scanf("%c",&ans);
+ if(toupper(ans)=='Y')
+ {
+
+     Add_rec();
+ }
+ else if(toupper(ans)=='N')
+
 
