@@ -298,7 +298,7 @@ B:
             goto D;
         }
      }
- }
+
  fprintf(ek," %s %s %s %s %c %i %i", p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
  printf("\n\n\t\t\t...... Information Record Successful......");
  fclose(ek);
@@ -312,5 +312,15 @@ B:
      Add_rec();
  }
  else if(toupper(ans)=='N')
+ {
+     printf("\n\t\t Thank You!");
+     getch();
+     MainMenu();
+ }
+ else{
+    printf("\n\t\t Invalid Input");
+    goto sd;
+ }
+ }
 
-
+/*
