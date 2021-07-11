@@ -27,10 +27,12 @@ void gotoxy(short x, short y)
 
 struct user
 {
-     int age;
+     int Quantity;
+     char In_Stock;
      char Song_Name[20];
      char Composed_By[20];
      char Contact_no[15];
+
      char Album[30];
      char Email[30];
 };
@@ -214,6 +216,31 @@ B:
         }
         if(!valid)
         {
+            printf("\n\t\t Composor Name contains Invalid character, Enter again");
+            goto B;
 
         }
+    }
+    /* ********ITEM IN STOCK******* */
+
+    do
+    {
+
+        printf("\n\t\t\t Item In stock[Y/N]:");
+        scanf("%c",&p.In_Stock);
+        if(toupper(p.In_Stock)=='Y'|| toupper(p.In_Stock)=='N')
+        {
+
+            ok=1;
+        }
+        else{
+            ok=0;
+        }
+        if(!ok)
+        {
+            printf("\n\t\t Contains invalid character, Enter either Y(yes) or N(no)");
+
+        }
+
+    }while(!ok);
     }
