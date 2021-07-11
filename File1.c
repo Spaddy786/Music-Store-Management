@@ -67,6 +67,39 @@ void MainMenu(void)
     system("clscr");
     int choose;
     Title();
-    printf("\n\n\n\n\n\n\n\t\t\t\t 1. Add Music Record\n");
-    printf("\n\t\t\t")
+    printf("\n\n\n\n\n\t\t\t\t 1. Add Music Record\n");
+    printf("\n\t\t\t\t 2. List Music Records\n");
+    printf("\n\t\t\t\t 3. Search Music Record\n");
+    printf("\n\t\t\t\t 4. Edit Music Record\n");
+    printf("\n\t\t\t\t 5. Delete Music Record\n");
+    printf("\n\t\t\t\t 6. Exit\n");
+    printf("\n\n\n \n\t\t\t Choose from 1 to 6:");
+    scanf("%i",&choose);
+    switch(choose)
+    {
+
+    case 1:
+        Add_rec();
+        break;
+    case 2:
+        func_list();
+        break;
+    case 3:
+        Search_rec();
+        break;
+    case 4:
+        Edit_rec();
+        break;
+    case 5:
+        Dlt_rec();
+        break;
+    case 6:
+        ex_it();
+        break;
+    default:
+        printf("\t\t\t Invalid Entry. Please Enter the right option");
+        getch();
+    }
+
 }
+
