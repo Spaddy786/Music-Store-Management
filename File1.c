@@ -323,4 +323,54 @@ B:
  }
  }
 
-/*
+/* ************* VIEW RECORDS ****************** */
+void func_list()
+{
+
+    int row;
+    system("clscr");
+    Title();
+    FILE *ek;
+    ek=fopen(Record2.dat","r");
+    printf("\n\n\t\t\t!!!!!!!!!!! List of Music Records!!!!!!!!!!\n");
+    gotoxy(1,15);
+    printf("Song Name");
+    gotoxy(20,15);
+    printf("Composed By");
+    gotoxy(32,15);
+    printf("Album");
+    gotoxy(37,15);
+    printf("Type");
+    gotoxy(49,15);
+    printf("Availability");
+    gotoxy(64,15);
+    printf("Quantity");
+    gotoxy(88,15);
+    printf("Price in INR");
+    printf("============================================================================================");
+    row=17;
+    while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
+    {
+
+        gotoxy(1,row);
+        printf("%s",p.Song_Name);
+        gotoxy(20,row);
+        printf("%s", p.Composed_By);
+        gotoxy(32,row);
+        printf("%s",p.Album);
+        gotoxy(37,row);
+        printf("%s",p.Type);
+        gotoxy(49,row);
+        printf("%c",p.In_Stock);
+        gotoxy(64,row);
+        printf("%i",p.Quantity);
+        gotoxy(88,row);
+        printf("%i",p.Price);
+        row++;
+    }
+    fclose(ek);
+    getch();
+    MainMenu();
+
+}
+
