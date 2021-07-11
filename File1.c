@@ -21,5 +21,35 @@ void Dlt_rec(void);
 void ex_it(void);
 void gotoxy(short x, short y)
 {
-    COORD pos
+    COORD pos = {x,y};
+    SetConsoleCursorPosition(GetHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+struct user
+{
+     int age;
+     char Gender;
+     char First_Name[20];
+     char Last_Name[20];
+     char Contact_no[15];
+     char Address[30];
+     char Email[30];
+};
+struct user p,temp_c;
+main(void)
+{
+
+    WelcomeScreen();
+    Title();
+    LoginScreen();
+}
+void WelcomeScreen(void)
+{
+printf("\n\n\n\n\n\n\n\n\t\t\t######################");
+printf("\n\t\t\t#\t\t Welcome To#");
+printf("\n\t\t\t\t# Music Store Management System    #");
+printf("\n\t\t\t\t####################");
+printf("\n\n\n\n\n Press any key to continue......\n");
+getch();
+system("cls");
 }
