@@ -243,4 +243,26 @@ B:
         }
 
     }while(!ok);
-    }
+
+    /* Quantity */
+
+    printf("\n\t\t\t Quantity:");
+    scanf("%i",&p.Quantity);
+
+    /* Album */
+
+    do{
+        C:
+            printf("\n\t\t\t Album Name:");
+            scanf("%s",p.Album);
+            p.Album[0]=toupper(p.Album[0]);
+            if(strlen(p.Album)>20||strlen(p.Album)<4)
+            {
+                printf("\n\t Invalid, Maximum character Range is 20 & minimum is 4");
+                goto C;
+            }
+
+    }while(!valid);
+
+    /
+
