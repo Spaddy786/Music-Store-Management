@@ -159,7 +159,7 @@ void ex_it(void)
      char ans;
      FILE*ek;
      ek=fopen("Record.dat","a");
-     prinf("\n\n\t\t\t!!!!!!!!!!! Add Music Record !!!!!!!!!!!!\n");
+     printf("\n\n\t\t\t!!!!!!!!!!! Add Music Record !!!!!!!!!!!!\n");
      /* ******* Name ********/
      A:
      printf("\n\t\t\t Name:");
@@ -331,7 +331,7 @@ void func_list()
     system("clscr");
     Title();
     FILE *ek;
-    ek=fopen(Record2.dat","r");
+    ek=fopen("Record2.dat","r");
     printf("\n\n\t\t\t!!!!!!!!!!! List of Music Records!!!!!!!!!!\n");
     gotoxy(1,15);
     printf("Song Name");
@@ -347,7 +347,7 @@ void func_list()
     printf("Quantity");
     gotoxy(88,15);
     printf("Price in INR");
-    printf("============================================================================================");
+    printf("=================================================================================================================");
     row=17;
     while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
     {
@@ -373,4 +373,84 @@ void func_list()
     MainMenu();
 
 }
+void Search_rec(void)
+{
 
+    char name[20];
+    system("clscr");
+    Title();
+    File *ek;
+    ek=fopen("Record2.dat","r");
+    printf("\n\n\t\t\t!!!!!!!!!!!!!!!! Search A Music Record !!!!!!!!!!!!!!!!");
+    printf("\n Enter Song Name:");
+    scanf("%s",name);
+    fflush(stdin);
+    name[0]=toupper(name[0]);
+    while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
+    {
+        if(strcmp(p.Song_Name,name)==0)
+        {
+
+            gotoxy(1,15);
+            printf("Song Name");
+            gotoxy(25,15);
+            printf("Composed By");
+            gotoxy(32,15);
+            printf("Album");
+            gotoxy(37,15);
+            printf("Song-Type");
+            gotoxy(52,15);
+            printf("Availability");
+            gotoxy(64,15);
+            printf("Quantity");
+            gotoxy(80,15);
+            printf("Price\n");
+            printf("=================================================================================================================");
+            gotoxy(1,18);
+            printf("%s",p.Song_Name);
+            gotoxy(25,18);
+            printf("%s", p.Composed_By);
+            gotoxy(32,18);
+            printf("%s",p.Album);
+            gotoxy(37,18);
+            printf("%s",p.Type);
+            gotoxy(52,18);
+            printf("%c",p.In_Stock);
+            gotoxy(64,18);
+            printf("%i",p.Quantity);
+            gotoxy(80,18);
+            printf("%i",p.Price);
+            printf("\n");
+            break;
+        }
+    }
+    if(strcmp(p.Song_Name,name)!=0)
+    {
+        gotoxy(5,10);
+        printf("Record Not Found!");
+        getch();
+    }
+    fclose(ek);
+    L:
+        getch();
+        printf("\n\n\t\t\t Do you want to search again[Y/N]?");
+        scanf("%c",&ans);
+        if(toupper(ans)=='Y')
+        {
+
+            Search_rec();
+        }
+        else if(toupper(ans)=='N')
+        {
+            printf("\n\t\t Thank you!");
+            getch();
+            MainMenu();
+        }
+        else
+        {
+            printf("\n\t Invalid input\n");
+            goto L;
+        }
+}
+
+/* ************************* EDIT RECORD ********************** */
