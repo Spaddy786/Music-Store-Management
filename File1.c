@@ -28,11 +28,10 @@ void gotoxy(short x, short y)
 struct user
 {
      int age;
-     char Gender;
-     char First_Name[20];
-     char Last_Name[20];
+     char Song_Name[20];
+     char Composed_By[20];
      char Contact_no[15];
-     char Address[30];
+     char Album[30];
      char Email[30];
 };
 struct user p,temp_c;
@@ -161,8 +160,28 @@ void ex_it(void)
      ek=fopen("Record.dat","a");
      prinf("\n\n\t\t\t!!!!!!!!!!! Add Music Record !!!!!!!!!!!!\n");
      /* ******* Name ********/
-     A;
+     A:
      printf("\n\t\t\t Name:");
-     scanf("%s",p.First_Name[0]);
-     if(strlen(p.f))
+     scanf("%s",p.Song_Name[0]);
+     p.Song_Name[0]=toupper(p.Song_Name[0]);
+     if(strlen(p.Song_Name)>20||strlen(p.Song_Name)<2)
+     {
+
+         printf("\n\t Invalid; max character limit is 20");
+         goto A;
+     }
+     else{
+        for(b=0;b<strlen(p.Song_Name);b++)
+        {
+            if(isalpha(p.Song_Name[b]))
+            {
+                valid=1;
+            }
+            else
+            {
+                valid=0;
+                break;
+            }
+        }
+     }
  }
