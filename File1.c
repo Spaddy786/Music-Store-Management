@@ -14,7 +14,7 @@ void Title(void);
 void MainMenu(void);
 void LoginScreen(void);
 void Add_rec(void);
-void func_list(void);
+void func_list();
 void Search_rec(void);
 void Edit_rec(void);
 void Dlt_rec(void);
@@ -22,7 +22,7 @@ void ex_it(void);
 void gotoxy(short x, short y)
 {
     COORD pos = {x,y};
-    SetConsoleCursorPosition(GetHandle(STD_OUTPUT_HANDLE),pos);
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 }
 
 struct user
@@ -31,10 +31,9 @@ struct user
      char In_Stock;
      char Song_Name[20];
      char Composed_By[20];
-     char Contact_no[15];
-
+     int Price[15];
+     char Type[10];
      char Album[30];
-     char Email[30];
 };
 struct user p,temp_c;
 main(void)
@@ -164,7 +163,7 @@ void ex_it(void)
      /* ******* Name ********/
      A:
      printf("\n\t\t\t Name:");
-     scanf("%s",p.Song_Name[0]);
+     scanf("%s",&p.Song_Name);
      p.Song_Name[0]=toupper(p.Song_Name[0]);
      if(strlen(p.Song_Name)>20||strlen(p.Song_Name)<2)
      {
@@ -191,11 +190,11 @@ void ex_it(void)
             goto A;
         }
      }
- }
+
 /* Composed By */
 B:
     printf("\n\t\t\t Last Name:");
-    scanf("%s",p.Composed_By);
+    scanf("%s",&p.Composed_By);
     p.Composed_By[0]=toupper(p.Composed_By[0]);
     if(strlen(p.Composed_By)>20||strlen(p.Composed_By)<2)
     {
@@ -254,7 +253,7 @@ B:
     do{
         C:
             printf("\n\t\t\t Album Name:");
-            scanf("%s",p.Album);
+            scanf("%s",&p.Album);
             p.Album[0]=toupper(p.Album[0]);
             if(strlen(p.Album)>20||strlen(p.Album)<4)
             {
@@ -264,5 +263,40 @@ B:
 
     }while(!valid);
 
-    /
+    /* ********************* PRICE **************************** */
+
+    printf("\n\t\t\t Enter Price(in INR):");
+    scanf("%i",&p.Price);
+
+    /* ********************* TYPE ****************************** */
+    D:
+     printf("\n\t\t\t Enter Song Type:");
+     scanf("%s",&p.Type);
+     p.Type[0]=toupper(p.Type[0]);
+     if(strlen(p.Type)>10||strlen(p.Type)<2)
+     {
+
+         printf("\n\t Invalid; The max character limit is 10 & minimum is 2");
+         goto D;
+     }
+     else{
+        for(b=0;b<strlen(p.Type);b++)
+        {
+            if(isalpha(p.Type[b]))
+            {
+                valid=1;
+            }
+            else
+            {
+                valid=0;
+                break;
+            }
+        }
+        if(!valid)
+        {
+            printf("\n\t\t Invalid Character in Song Name, Try again!");
+            goto D;
+        }
+     }
+ }
 
