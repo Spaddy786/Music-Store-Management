@@ -379,7 +379,7 @@ void Search_rec(void)
     char name[20];
     system("clscr");
     Title();
-    File *ek;
+    FILE *ek;
     ek=fopen("Record2.dat","r");
     printf("\n\n\t\t\t!!!!!!!!!!!!!!!! Search A Music Record !!!!!!!!!!!!!!!!");
     printf("\n Enter Song Name:");
@@ -454,3 +454,105 @@ void Search_rec(void)
 }
 
 /* ************************* EDIT RECORD ********************** */
+void Edit_rec(void)
+{
+
+    FILE *ek,*ft;
+    int i,b, valid=0;
+    char ch;
+    char name[20];
+    system("clscr");
+    Title();
+    ft=fopen("temp.dat","w+");
+    ek=fopen("Record.dat","r");
+    if(ek==NULL)
+    {
+        printf("\n\t Cannot Open File!");
+        getch();
+        MainMenu();
+    }
+    printf("\n\n\t\t\t!!!!!!!!!!!!!!!! Edit Music Records !!!!!!!!!!!!!!!!\n");
+    gotoxy(12,13);
+    printf("Edit Song Name to :");
+    scanf("%s",name);
+    fflush(stdin);
+    name[0]=toupper(name[0]);
+    gotoxy(12,15);
+    if(ft==NULL)
+    {
+
+        printf("\n Cannot open File!");
+        getch();
+        MainMenu();
+    }
+    while(fscanf(ek,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price)!=EOF)
+    {
+        if(strcmp(p.Song_Name,name)==0)
+        {
+            valid=1;
+            gotoxy(25,17);
+            printf("*** Existing Record ***");
+            gotoxy(10,19);
+            printf("%s \t%s \t%s \t%s \t%c \t%i \t%i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
+            gotoxy(12,22);
+            printf("Enter New song name:");
+            scanf("%s",&p.Song_Name);
+            gotoxy(12,26);
+            printf("Composed By:");
+            scanf("%s",&p.Composed_By);
+            p.Composed_By=toupper(p.Composed_By);
+            gotoxy(12,28);
+            printf("Album:");
+            scanf("%s",&p.Album);
+            p.Album[0]=toupper(p.Album[0]);
+            gotoxy(12,30);
+            printf("Song Type:");
+            scanf("%s",&p.Type);
+            gotoxy(12,32);
+            printf("Availability :");
+            scanf("%c",&p.In_Stock);
+            p.In_Stock=toupper(p.In_Stock);
+            gotoxy(12,34);
+            printf("Quantity:");
+            scanf("%i", &p.Quantity);
+            gotoxy(12,36);
+            printf("Update Price");
+            scanf("%i",&p.Price);
+            printf("\nPress U to Update the Records:");
+            ch=getche();
+            if(ch=='u' || ch=="U")
+            {
+                fprintf(ft,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
+                printf("\n\n\t\t\t Music records updated Successfully");
+            }
+            }
+            else
+            {
+                fprintf(ft,"%s %s %s %s %c %i %i\n",p.Song_Name,p.Composed_By,p.Album,p.Type,p.In_Stock,p.Quantity,p.Price);
+            }
+    }
+    if(!valid)
+    {
+        printf("\n\t\t NO RECORD FOUND.....");
+        fclose(ft);
+        fclose(ek);
+        remove("Record2.dat");
+        remove("temp2.dat","Record2.dat");
+        getch();
+        MainMenu();
+
+    }
+    /* *********** DELETING RECORD ********** */
+    void Dlt_rec
+
+
+
+
+
+
+
+
+
+        }
+    }
+}
