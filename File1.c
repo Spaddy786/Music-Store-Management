@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <ctype.h>
-#include <<string.h>
+#include <string.h>
 #include <stdlib.h>
 char ans=0;
 int ok;
@@ -53,12 +53,12 @@ printf("\n\n\n\n\n Press any key to continue......\n");
 getch();
 system("clscr");
 }
-void Title("void")
+void Title(void)
 {
 
     printf("\n\n\t\t--------------------------------------------");
     printf("\n\t\t\t\t       Hexagon Music Inc.        ");
-    printf("\n\t\t--------------------------------------------")
+    printf("\n\t\t--------------------------------------------");
 }
 /* ******** main menu******** */
 void MainMenu(void)
@@ -120,8 +120,9 @@ void ex_it(void)
      char original_Username[25]="admin";
      char original_Password[15]="1234";
      do
-        [
-        printf("\n\n\n\n\t\t\t\t Enter your Username and Password:");
+        {
+
+     printf("\n\n\n\n\t\t\t\t Enter your Username and Password:");
      printf("\n\n\n\t\t\t\t\t Username:");
      scanf("%s",&Username);
      printf("\n\n\t\t\t\t\t Password:");
