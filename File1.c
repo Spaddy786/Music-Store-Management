@@ -147,3 +147,22 @@ void ex_it(void)
      getch();
      ex_it();
  }
+ system("cls");
+ }
+
+ /* ***** Adding Record ****/
+ void Add_rec(void)
+ {
+     system("clscr");
+     Title();
+
+     char ans;
+     FILE*ek;
+     ek=fopen("Record.dat","a");
+     prinf("\n\n\t\t\t!!!!!!!!!!! Add Music Record !!!!!!!!!!!!\n");
+     /* ******* Name ********/
+     A;
+     printf("\n\t\t\t Name:");
+     scanf("%s",p.First_Name[0]);
+     if(strlen(p.f))
+ }
