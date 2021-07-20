@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <windows.h>//gotoxy()
-#include <conio.h>//used for delay(),getch(),etc.
-#include <ctype.h>//used for toUpper(),toLower(),etc.
-#include <string.h>//used for strcmp(),strcpy(),strlen()
+#include<stdio.h>
+#include <windows.h>
+#include <conio.h>
+#include <ctype.h>
+#include <string.h>
 #include <stdlib.h>
-
 char ans=0;
 int ok;
 int b,valid=0;
@@ -25,8 +24,8 @@ void gotoxy(short x, short y)
     COORD pos = {x,y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 }
-// List of Global Variables
-struct song
+
+struct user
 {
      int Quantity;
      char In_Stock;
@@ -36,16 +35,14 @@ struct song
      char Type[10];
      char Album[30];
 };
-struct song p,temp_c;//p and temp_c are temporary variables
+struct user p,temp_c;
 main(void)
 {
 
-    WelcomeScreen();//used to call WelcomeScreen Function
-    Title();//Title function
-    LoginScreen();// Login screen function called
-
+    WelcomeScreen();
+    Title();
+    LoginScreen();
 }
-/* **************************** WELCOME SCREEN***************************/
 void WelcomeScreen(void)
 {
 printf("\n\n\n\n\n\n\n\n\t\t\t\t\t#################################################");
@@ -56,7 +53,6 @@ printf("\n\n\n\n\n Press any key to continue......\n");
 getch();
 system("cls");
 }
-/* *************************TITLE SCREEN***************************/
 void Title(void)
 {
 
@@ -64,55 +60,53 @@ void Title(void)
     printf("\n\t\t\t\t\t\t       Hexagon Music Inc.        ");
     printf("\n\t\t--------------------------------------------------------------------------------------------");
 }
-
 /* ******** main menu******** */
-
 void MainMenu(void)
 {
 
     system("cls");
     int choose;
-    Title();//call title Function
+    Title();
     printf("\n\n\n\n\n\t\t\t\t 1. Add Music Record\n");
     printf("\n\t\t\t\t 2. List Music Records\n");
     printf("\n\t\t\t\t 3. Search Music Record\n");
     printf("\n\t\t\t\t 4. Edit Music Record\n");
     printf("\n\t\t\t\t 5. Delete Music Record\n");
     printf("\n\t\t\t\t 6. Exit\n");
-    printf("\n\n\n \n\t\t\t Choose from 1 to 6 : ");
+    printf("\n\n\n \n\t\t\t Choose from 1 to 6:");
     scanf("%i",&choose);
-    switch(choose)//Add_rec function is called
+    switch(choose)
     {
 
-        case 1:
-            Add_rec();
-            break;
-        case 2:
-            func_list();
-            break;
-        case 3:
-            Search_rec();
-            break;
-        case 4:
-            Edit_rec();
-            break;
-        case 5:
-            Dlt_rec();
-            break;
-        case 6:
-            ex_it();
-            break;
-        default:
-            printf("\t\t\t Invalid Entry. Please Enter the right option");
-            getch();
+    case 1:
+        Add_rec();
+        break;
+    case 2:
+        func_list();
+        break;
+    case 3:
+        Search_rec();
+        break;
+    case 4:
+        Edit_rec();
+        break;
+    case 5:
+        Dlt_rec();
+        break;
+    case 6:
+        ex_it();
+        break;
+    default:
+        printf("\t\t\t Invalid Entry. Please Enter the right option");
+        getch();
     }
 
 }
 
 /* LOGIN SCREEN */
- void LoginScreen(void) //Function for login screen
+ void LoginScreen(void)
  {
-     //list of variables
+
      int e=0;
      char Username[15];
      char Password[15];
@@ -150,45 +144,44 @@ void MainMenu(void)
  }
 
  /* ***** Adding Record ****/
-
  void Add_rec(void)
  {
      system("cls");
      Title();
 
      char ans;
-     FILE*ek;//ek is a file pointer
-     ek=fopen("Record3.dat","a");
+     FILE*ek;
+     ek=fopen("Record.dat","a");
      printf("\n\n\t\t\t!!!!!!!!!!! Add Music Record !!!!!!!!!!!!\n");
      /* ******* Name ********/
      A:
      printf("\n\t\t\t Name:");
      scanf("%s",&p.Song_Name);
      p.Song_Name[0]=toupper(p.Song_Name[0]);
-     if(strlen(p.Song_Name)<20||strlen(p.Song_Name)>2)
+     if(strlen(p.Song_Name)>20||strlen(p.Song_Name)<2)
      {
-            for(b=0;b<strlen(p.Song_Name);b++)
-            {
-                if(isalpha(p.Song_Name[b]))
-                {
-                    valid=1;
 
-                }
-                else
-                {
-                    valid=0;
-                    break;
-                }
+         printf("\n\t Invalid; The max character limit is 20 & minimum is 2");
+         goto A;
+     }
+     else{
+        for(b=0;b<strlen(p.Song_Name);b++)
+        {
+            if(isalpha(p.Song_Name[b]))
+            {
+                valid=1;
             }
-    if(valid==0)
+            else
+            {
+                valid=0;
+                break;
+            }
+        }
+    if(!valid)
     {
                 printf("\n\t\t Invalid Character in Song Name, Try again!");
                 goto A;
         }
-    else if(valid==1)
-    {
-        fprintf(ek,"%s\t",p.Song_Name);
-    }
      }
 
 /* Composed By */
@@ -196,14 +189,17 @@ B:
     printf("\n\t\t\t Composed by :");
     scanf("%s",&p.Composed_By);
     p.Composed_By[0]=toupper(p.Composed_By[0]);
-    if(strlen(p.Composed_By)<20||strlen(p.Composed_By)>2)
+    if(strlen(p.Composed_By)>20||strlen(p.Composed_By)<2)
     {
+        printf("\n\t Invalid, Maximum Character Range is 20 and minimum is 2");
+        goto B;
+    }
+    else{
         for(b=0;b<strlen(p.Composed_By);b++)
         {
             if(isalpha(p.Composed_By[b]))
             {
                 valid=1;
-
             }
             else{
                 valid=0;
@@ -216,27 +212,29 @@ B:
             goto B;
 
         }
-        else if(valid=1)
-        {
-            fprintf(ek,"%s\t",p.Composed_By);
-        }
     }
-
     /* ********ITEM IN STOCK******* */
-G:
-    printf("\n\t\t\t Item In stock[Y/N]:");
-                scanf("%c",&p.In_Stock);
-                getch();
-                if(p.In_Stock=='Y'|| 'N'||'y'||'n')
-                {
-                    ok=1;
-                    fprintf(ek,"%c\t",p.In_Stock);
-                }
-                else{
-                    ok=0;
-                    goto G;
-                }
 
+    do
+    {
+
+        printf("\n\t\t\t Item In stock[Y/N]:");
+        scanf("%c",&p.In_Stock);
+        getch();
+        if(p.In_Stock=='Y'|| 'N'||'y'||'n')
+        {
+            ok=1;
+        }
+        else{
+            ok=0;
+        }
+        if(ok==0)
+        {
+            printf("\n\t\t Contains invalid character, Enter either Y(yes) or N(no)");
+
+        }
+
+    }while(!ok);
 
     /* Quantity */
 
